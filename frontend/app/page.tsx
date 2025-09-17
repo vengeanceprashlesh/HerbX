@@ -19,7 +19,7 @@ export default function Home() {
               HerbX
             </h1>
             <p className="text-lg font-light max-w-2xl leading-relaxed text-primary">
-              Digital India's blockchain-powered traceability for Ayurvedic herbs.
+              Digital India&apos;s blockchain-powered traceability for Ayurvedic herbs.
               <span className="block mt-2 text-secondary font-medium">Transparent. Immutable. Verified. 🇮🇳</span>
             </p>
           </div>
@@ -104,7 +104,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-sm text-muted">
-              Empowering Digital India's herb producers nationwide 🇮🇳
+              Empowering Digital India&apos;s herb producers nationwide 🇮🇳
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-12 text-center">
