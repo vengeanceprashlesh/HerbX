@@ -132,7 +132,7 @@ export function HerbRegistrationForm() {
     try {
       // Here you would integrate with your smart contract
       // For now, we'll simulate the transaction
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      await new Promise(resolve => setTimeout(resolve, 500))
       
       toast.success('Herb batch registered successfully!')
       

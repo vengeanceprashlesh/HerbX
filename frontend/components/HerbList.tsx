@@ -80,7 +80,7 @@ export function HerbList() {
       setTimeout(() => {
         setHerbs(mockHerbs)
         setLoading(false)
-      }, 1000)
+      }, 100)
     } else {
       setHerbs([])
       setLoading(false)

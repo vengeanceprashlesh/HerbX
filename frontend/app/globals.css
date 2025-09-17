@@ -1,18 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* Minimal black and white theme */
-  --background: #000000;
-  --background-secondary: #111111;
-  --primary: #ffffff;
-  --secondary: #666666;
-  --accent: #f5f5f5;
-  --text-primary: #ffffff;
-  --text-secondary: #999999;
-  --text-muted: #666666;
-  --card-bg: #111111;
-  --card-border: rgba(255, 255, 255, 0.1);
-  --hover-bg: rgba(255, 255, 255, 0.05);
+  /* Government of India Official Color Palette 🇮🇳 */
+  --gov-navy: #0A3D62;          /* Official Navy Blue */
+  --gov-saffron: #FF6600;       /* Indian Saffron */
+  --gov-green: #128807;         /* Indian Green */
+  --ashoka-blue: #000080;       /* Ashoka Chakra Blue */
+  --digital-india: #1976D2;     /* Digital India Blue */
+  --ayush-green: #2E7D32;       /* Ministry of AYUSH Green */
+  
+  /* Primary System Colors */
+  --background: #FFFFFF;        
+  --background-secondary: var(--gov-navy);
+  --primary: var(--gov-navy);           
+  --secondary: var(--ayush-green);      
+  --accent: var(--gov-saffron);         
+  --text-primary: var(--gov-navy);      
+  --text-secondary: var(--ayush-green); 
+  --text-muted: #666666;        
+  --card-bg: #FAFAFA;           /* Slightly off-white */
+  --card-border: rgba(10, 61, 98, 0.12);
+  --hover-bg: rgba(255, 102, 0, 0.05);
+  
+  /* Status Colors */
+  --success: #2E7D32;
+  --warning: #F57C00;
+  --error: #D32F2F;
+  --info: var(--digital-india);
+  
+  /* Government Specific */
+  --gov-header-bg: var(--gov-navy);
+  --gov-accent-light: rgba(255, 102, 0, 0.1);
+  --certificate-bg: #F8F9FA;
+  --form-border: rgba(10, 61, 98, 0.2);
 }
 
 @theme inline {
@@ -30,7 +52,7 @@ body {
   padding: 0;
   background: var(--background);
   color: var(--text-primary);
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -42,40 +64,73 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Minimal black and white classes */
+/* Indian Government Color Classes */
 .bg-primary {
   background: var(--primary);
 }
 
 .bg-secondary {
-  background: var(--background-secondary);
+  background: var(--secondary);
+}
+
+.bg-accent {
+  background: var(--accent);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.border-primary {
+  border-color: var(--primary);
+}
+
+.border-accent {
+  border-color: var(--accent);
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 50%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-weight: 700;
 }
 
 /* Card styling */
 .minimal-card {
-  background: #111111;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(10, 61, 98, 0.08);
 }
 
 .minimal-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  background: var(--hover-bg);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(10, 61, 98, 0.15);
 }
 
-/* Glass morphism replacement for better contrast */
+/* Glass morphism with Indian Government colors */
 .glass {
-  background: #111111;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
   border-radius: 12px;
 }
 
@@ -192,4 +247,883 @@ html {
   height: 1px;
   background: var(--card-border);
   margin: 2rem 0;
+}
+
+/* ============ GOVERNMENT OF INDIA DESIGN SYSTEM ============ */
+
+/* Government Header Styles */
+.gov-header {
+  background: linear-gradient(135deg, var(--gov-navy) 0%, #1565C0 100%);
+  border-bottom: 3px solid var(--gov-saffron);
+  box-shadow: 0 2px 8px rgba(10, 61, 98, 0.15);
+}
+
+.gov-emblem {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--ashoka-blue);
+  border: 2px solid var(--gov-saffron);
+}
+
+/* Official Cards */
+.gov-card {
+  background: var(--certificate-bg);
+  border: 2px solid var(--form-border);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.gov-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gov-saffron) 0%, var(--gov-navy) 50%, var(--gov-green) 100%);
+}
+
+.gov-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(10, 61, 98, 0.12);
+  border-color: var(--accent);
+}
+
+/* Certificate Styling */
+.certificate {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid var(--gov-navy);
+  border-radius: 12px;
+  position: relative;
+  padding: 2rem;
+}
+
+.certificate::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid var(--gov-saffron);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* Government Form Styling */
+.gov-form {
+  background: white;
+  border: 1px solid var(--form-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.gov-input {
+  border: 2px solid var(--form-border);
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.gov-input:focus {
+  outline: none;
+  border-color: var(--digital-india);
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+/* Status Badges */
+.status-verified {
+  background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-pending {
+  background: linear-gradient(135deg, #F57C00 0%, #FF9800 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-rejected {
+  background: linear-gradient(135deg, #D32F2F 0%, #F44336 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Traceability Flow */
+.trace-step {
+  position: relative;
+  background: white;
+  border: 2px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.trace-step.active {
+  border-color: var(--accent);
+  background: var(--gov-accent-light);
+  transform: scale(1.02);
+}
+
+.trace-step::after {
+  content: '→';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.trace-step:last-child::after {
+  display: none;
+}
+
+/* India Map Styling */
+.india-map {
+  background: linear-gradient(145deg, #e3f2fd 0%, #bbdefb 100%);
+  border-radius: 12px;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* QR Code Styling */
+.qr-container {
+  background: white;
+  border: 3px solid var(--gov-navy);
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+}
+
+.qr-container::before {
+  content: 'GOVERNMENT CERTIFIED';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gov-saffron);
+  color: white;
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Government Grid */
+.gov-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Animation for Government Elements */
+@keyframes govSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gov-animate {
+  animation: govSlideIn 0.6s ease-out forwards;
+}
+
+/* Digital India Branding */
+.digital-india-badge {
+  background: linear-gradient(135deg, var(--digital-india) 0%, #2196F3 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+/* Ministry of AYUSH Branding */
+.ayush-badge {
+  background: linear-gradient(135deg, var(--ayush-green) 0%, #4CAF50 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+/* Authentic Government of India Header Styling */
+.gov-header-authentic {
+  background: white;
+  border-bottom: 4px solid #ff6600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.gov-header-authentic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6600 0%, white 50%, #138808 100%);
+}
+
+/* Government Authority Bar */
+.gov-authority-bar {
+  background: #f8fafc;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+/* National Emblem Styling */
+.national-emblem {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  background: linear-gradient(135deg, #fef7ed 0%, #dbeafe 100%);
+  border: 2px solid #fb923c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.national-emblem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+  border-color: #15803d;
+}
+
+.ashoka-chakra-svg {
+  animation: rotate-slow 20s linear infinite;
+}
+
+.national-emblem:hover .ashoka-chakra-svg {
+  animation: rotate-fast 2s linear infinite;
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-fast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* System Status Indicator */
+.system-online-indicator {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Official Badge Styling */
+.official-badge {
+  background: linear-gradient(135deg, #fed7aa 0%, #fb923c 100%);
+  border: 1px solid #f97316;
+  box-shadow: 0 2px 4px rgba(251, 146, 60, 0.3);
+}
+
+/* Government Navigation Strip */
+.gov-nav-strip {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  border-top: 1px solid #3b82f6;
+}
+
+/* Dropdown Government Styling */
+.gov-dropdown {
+  background: white;
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  box-shadow: 
+    0 20px 50px rgba(30, 58, 138, 0.15),
+    0 0 0 1px rgba(59, 130, 246, 0.1);
+}
+
+.gov-dropdown-header {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-bottom: 1px solid #3b82f6;
+}
+
+.gov-dropdown-footer {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 11px;
+}
+
+/* Hindi/English Text Styling - Global Hindi Support */
+.bilingual-text, .hindi-text, [lang="hi"] {
+  font-family: 'Noto Sans Devanagari', 'Inter', system-ui, sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure all text supports Hindi globally */
+*, *::before, *::after {
+  font-family: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Strong Hindi text support */
+.hindi-strong {
+  font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+/* Government Form Elements */
+.gov-search-input {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.gov-search-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.gov-login-button {
+  background: white;
+  border: 1px solid #3b82f6;
+  color: #1e40af;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.gov-login-button:hover {
+  background: #dbeafe;
+  border-color: #1d4ed8;
+}
+
+/* Mobile Government Menu */
+.gov-mobile-menu {
+  background: #f8fafc;
+  border-top: 1px solid #cbd5e1;
+}
+
+.gov-mobile-section {
+  border-left: 2px solid;
+  padding-left: 16px;
+}
+
+.gov-mobile-section.digital-services {
+  border-left-color: #fb923c;
+}
+
+.gov-mobile-section.certifications {
+  border-left-color: #22c55e;
+}
+
+/* Language Selector */
+.language-selector {
+  background: transparent;
+  border: none;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.language-selector:focus {
+  outline: none;
+}
+
+/* Accessibility Skip Link */
+.skip-link {
+  color: #64748b;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.skip-link:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
+.gov-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    var(--accent) 0%, 
+    var(--success) 33%, 
+    var(--accent) 66%, 
+    var(--success) 100%
+  );
+}
+
+.gov-emblem {
+  width: 48px;
+  height: 48px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.gov-emblem:hover {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Top Government Bar */
+.gov-header + div {
+  background: white;
+  border-bottom: 1px solid rgba(10, 61, 98, 0.1);
+}
+
+/* Enhanced Badges */
+.digital-india-badge {
+  background: linear-gradient(135deg, var(--accent) 0%, #D35400 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.ayush-badge {
+  background: linear-gradient(135deg, var(--success) 0%, #1E8449 100%);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 10px rgba(39, 174, 96, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Enhanced dropdown styling for government theme */
+.gov-header .relative .absolute {
+  background: white;
+  border: 2px solid var(--primary);
+  box-shadow: 
+    0 10px 40px rgba(10, 61, 98, 0.2),
+    0 0 0 1px rgba(10, 61, 98, 0.1);
+}
+
+.gov-header .relative .absolute::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--primary);
+}
+
+/* Mobile menu styling */
+.gov-header .lg\:hidden {
+  background: linear-gradient(135deg, #1A5276 0%, var(--primary) 100%);
+  border-top: 2px solid var(--accent);
+}
+
+/* Professional government typography */
+.gov-header h3 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+}
+
+/* Enhanced navigation hover effects */
+.gov-header nav a:hover,
+.gov-header nav button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Government Emblem with Ashoka Chakra */
+.gov-emblem-enhanced {
+  width: 56px;
+  height: 56px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+  border: 3px solid var(--gov-saffron);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 0 0 2px rgba(255, 255, 255, 0.3),
+    0 4px 15px rgba(10, 61, 98, 0.2);
+  position: relative;
+}
+
+.gov-emblem-enhanced:hover {
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border-color: var(--gov-green);
+  transform: scale(1.05) rotate(180deg);
+  box-shadow: 
+    0 0 0 3px rgba(255, 255, 255, 0.5),
+    0 8px 25px rgba(10, 61, 98, 0.3),
+    0 0 30px rgba(255, 102, 0, 0.4);
+}
+
+.ashoka-chakra {
+  animation: rotate 10s linear infinite;
+}
+
+.gov-emblem-enhanced:hover .ashoka-chakra {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Government Beta Badge */
+.gov-beta-badge {
+  background: linear-gradient(135deg, var(--gov-saffron) 0%, #FF8F00 100%);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 6px rgba(255, 102, 0, 0.4);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { 
+    box-shadow: 0 2px 6px rgba(255, 102, 0, 0.4);
+  }
+  to { 
+    box-shadow: 0 2px 6px rgba(255, 102, 0, 0.8), 0 0 12px rgba(255, 102, 0, 0.3);
+  }
+}
+
+/* Enhanced dropdown with government styling */
+.gov-header .relative .absolute {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid var(--primary);
+  box-shadow: 
+    0 20px 60px rgba(10, 61, 98, 0.25),
+    0 0 0 1px rgba(10, 61, 98, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+}
+
+.gov-header .relative .absolute a:hover {
+  background: linear-gradient(135deg, var(--gov-accent-light) 0%, rgba(255, 102, 0, 0.08) 100%);
+  border-color: var(--accent);
+}
+
+/* Professional government navigation */
+.gov-header nav button {
+  position: relative;
+  overflow: hidden;
+}
+
+.gov-header nav button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.gov-header nav button:hover::before {
+  left: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .gov-emblem,
+  .gov-emblem-enhanced {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .ashoka-chakra svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .ayush-badge {
+    display: none;
+  }
+  
+  .gov-beta-badge {
+    font-size: 8px;
+    padding: 2px 6px;
+  }
+}
+
+/* Government Wallet Connection Styling */
+.gov-wallet-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.gov-wallet-wrapper:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Notification Bell Styling */
+.gov-header button[class*="relative p-2"] {
+  transition: all 0.3s ease;
+}
+
+.gov-header button[class*="relative p-2"]:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.gov-header button[class*="relative p-2"] span {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(-1px);
+  }
+}
+
+/* Enhanced header elements with government styling */
+.gov-header .max-w-7xl {
+  position: relative;
+}
+
+.gov-header .max-w-7xl::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Status indicator for government systems */
+.system-status {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--success);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.system-status::before {
+  content: '●';
+  margin-right: 6px;
+  animation: pulse 2s infinite;
+  color: #4CAF50;
+}
+
+/* Government Wallet Connection Styling */
+.gov-connect-wallet {
+  position: relative;
+  overflow: hidden;
+}
+
+.gov-connect-wallet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.gov-connect-wallet:hover::before {
+  left: 100%;
+}
+
+.gov-connect-wallet:active {
+  transform: scale(0.98);
+}
+
+/* Connected Wallet Styling */
+.wallet-connected {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border: 2px solid #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.wallet-address {
+  font-family: 'Courier New', monospace;
+  background: rgba(30, 58, 138, 0.1);
+  color: #1e3a8a;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.verification-badge {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  color: #166534;
+  border: 1px solid #22c55e;
+  animation: pulse-verify 2s infinite;
+}
+
+@keyframes pulse-verify {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Government Security Badge */
+.gov-security-badge {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: security-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes security-glow {
+  from {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  to {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(59, 130, 246, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .gov-emblem-enhanced {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .ashoka-chakra svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .gov-wallet-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1px;
+  }
+  
+  .gov-connect-wallet {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .gov-connect-wallet span:last-child {
+    display: none;
+  }
 }
