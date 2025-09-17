@@ -29,4 +29,8 @@ export const config = defaultWagmiConfig({
   enableInjected: true,
   enableEIP6963: true,
   enableCoinbase: true,
+  // Additional wallet detection
+  walletImages: {
+    phantom: 'https://phantom.app/favicon.ico'
+  }
 })

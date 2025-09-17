@@ -67,11 +67,11 @@ const mockHerbData: HerbData = {
 }
 
 const statusColors = {
-  COLLECTED: 'bg-green-100 text-green-800 border-green-200',
-  PROCESSED: 'bg-blue-100 text-blue-800 border-blue-200',
-  TESTED: 'bg-purple-100 text-purple-800 border-purple-200',
-  TRANSPORTED: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-  MANUFACTURED: 'bg-red-100 text-red-800 border-red-200'
+  COLLECTED: 'bg-green-500/20 text-green-300 border-green-500/30',
+  PROCESSED: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+  TESTED: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+  TRANSPORTED: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+  MANUFACTURED: 'bg-red-500/20 text-red-300 border-red-500/30'
 }
 
 export default function VerifyPage() {
@@ -123,7 +123,7 @@ export default function VerifyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+    <div className="min-h-screen bg-black">
       <Header />
       
       <div className="max-w-4xl mx-auto px-4 py-12">
@@ -132,14 +132,14 @@ export default function VerifyPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6"
+            className="w-20 h-20 bg-white rounded-lg flex items-center justify-center mx-auto mb-6"
           >
-            <QrCodeIcon className="w-10 h-10 text-white" />
+            <QrCodeIcon className="w-10 h-10 text-black" />
           </motion.div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-white mb-4">
             Verify Ayurvedic Herb Authenticity
           </h1>
-          <p className="text-xl text-gray-700 font-medium max-w-2xl mx-auto">
+          <p className="text-lg text-gray-300 font-light max-w-2xl mx-auto">
             Enter the Herb ID from the QR code to verify its authenticity and trace its complete journey from farm to formulation.
           </p>
         </div>
@@ -149,11 +149,11 @@ export default function VerifyPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 mb-8"
+          className="bg-gray-900 border border-gray-700 rounded-xl p-8 mb-8"
         >
           <form onSubmit={handleVerify} className="max-w-md mx-auto">
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-3">
+              <label className="block text-sm font-semibold text-white mb-3">
                 Herb Batch ID
               </label>
               <input
@@ -161,13 +161,13 @@ export default function VerifyPage() {
                 value={herbId}
                 onChange={(e) => setHerbId(e.target.value)}
                 placeholder="Enter Herb ID (e.g., 1)"
-                className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-center text-lg font-mono"
+                className="w-full px-4 py-4 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all text-center text-lg font-mono text-white placeholder-white/50"
                 disabled={loading}
               />
             </div>
             
             {error && (
-              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+              <div className="mb-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 text-sm">
                 {error}
               </div>
             )}
@@ -177,11 +177,11 @@ export default function VerifyPage() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               disabled={loading}
-              className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white py-4 px-6 rounded-xl font-semibold shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-white text-black py-4 px-6 rounded-xl font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
             >
               {loading ? (
                 <div className="flex items-center justify-center gap-3">
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
                   Verifying on Blockchain...
                 </div>
               ) : (
@@ -335,36 +335,36 @@ export default function VerifyPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-white/30 rounded-3xl p-8 mt-12"
+          className="bg-gray-900 border border-gray-700 rounded-xl p-8 mt-12"
         >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">
             How Verification Works
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-blue-600 font-bold">1</span>
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-black font-bold">1</span>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Scan QR Code</h3>
-              <p className="text-gray-600 text-sm">
+              <h3 className="font-semibold text-white mb-2">Scan QR Code</h3>
+              <p className="text-gray-300 text-sm">
                 Scan the QR code on the product or enter the Herb ID manually
               </p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-green-600 font-bold">2</span>
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-black font-bold">2</span>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Blockchain Query</h3>
-              <p className="text-gray-600 text-sm">
+              <h3 className="font-semibold text-white mb-2">Blockchain Query</h3>
+              <p className="text-gray-300 text-sm">
                 System queries the blockchain for authentic herb data
               </p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-purple-600 font-bold">3</span>
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-black font-bold">3</span>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">View Journey</h3>
-              <p className="text-gray-600 text-sm">
+              <h3 className="font-semibold text-white mb-2">View Journey</h3>
+              <p className="text-gray-300 text-sm">
                 See the complete traceability from farm to final product
               </p>
             </div>

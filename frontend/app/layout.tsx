@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AyurTrace - Botanical Herb Traceability",
+  title: "HerbX - Botanical Herb Traceability",
   description: "Blockchain-based traceability system for Ayurvedic herbs from farm to formulation",
   keywords: "blockchain, ayurveda, herbs, traceability, web3, government",
 };
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased bg-gradient-to-br from-green-50 to-blue-50 min-h-screen`}>
+      <body className={`${inter.className} antialiased min-h-screen`}>
         <Providers>
           {children}
           <Toaster 
@@ -27,8 +27,11 @@ export default function RootLayout({
             toastOptions={{
               duration: 5000,
               style: {
-                background: '#363636',
-                color: '#fff',
+                background: 'rgba(15, 15, 35, 0.9)',
+                color: '#ffffff',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '12px',
+                backdropFilter: 'blur(20px)',
               },
             }}
           />

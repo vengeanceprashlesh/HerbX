@@ -5,43 +5,43 @@ import { WalletConnection } from './WalletConnection'
 
 export function Header() {
   return (
-    <header className="relative z-50 bg-white/80 backdrop-blur-md border-b border-white/20">
-      <div className="max-w-7xl mx-auto px-4">
+    <header className="relative z-50 bg-black border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">A</span>
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="w-8 h-8 bg-white rounded-sm flex items-center justify-center transition-all duration-300 group-hover:scale-105">
+              <span className="text-black font-bold text-sm">H</span>
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-              AyurTrace
+            <span className="text-xl font-light text-white">
+              HerbX
             </span>
           </Link>
 
-          {/* Navigation */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
-              href="/" 
-              className="text-gray-800 hover:text-gray-900 transition-colors font-semibold"
+              href="/register" 
+              className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
             >
               Register
             </Link>
             <Link 
-              href="/track" 
-              className="text-gray-800 hover:text-gray-900 transition-colors font-semibold"
+              href="/herbs" 
+              className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
             >
               Track Herbs
             </Link>
             <Link 
               href="/verify" 
-              className="text-gray-800 hover:text-gray-900 transition-colors font-semibold"
+              className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
             >
               Verify QR
             </Link>
           </nav>
 
           {/* Wallet Connection */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center">
             <WalletConnection />
           </div>
         </div>

@@ -3,6 +3,7 @@
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 import { useAccount, useDisconnect } from 'wagmi'
 import { motion } from 'framer-motion'
+import { GradientButton } from './GradientButton'
 
 export function WalletConnection() {
   const { open } = useWeb3Modal()
@@ -16,9 +17,9 @@ export function WalletConnection() {
   if (isConnected && address) {
     return (
       <div className="flex items-center gap-3">
-        <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 border border-gray-200 shadow-sm flex items-center gap-2">
-          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-          <span className="text-sm font-bold text-gray-900">
+        <div className="bg-gray-900 border border-white/20 px-3 py-2 rounded-md flex items-center gap-2">
+          <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+          <span className="text-xs font-mono text-white">
             {formatAddress(address)}
           </span>
         </div>
@@ -26,7 +27,7 @@ export function WalletConnection() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => disconnect()}
-          className="px-4 py-2 text-sm font-bold text-red-700 hover:text-red-800 transition-colors bg-red-50 hover:bg-red-100 rounded-lg"
+          className="px-3 py-2 text-xs font-medium text-gray-400 hover:text-white transition-all duration-200 border border-white/20 hover:border-white/40 rounded-md"
         >
           Disconnect
         </motion.button>
@@ -35,16 +36,20 @@ export function WalletConnection() {
   }
 
   return (
-    <motion.button
+    <motion.div
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      onClick={() => open()}
-      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg transition-all duration-200 flex items-center gap-2"
     >
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-        <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-      </svg>
-      Connect Wallet
-    </motion.button>
+      <GradientButton
+        onClick={() => open()}
+        size="md"
+        className="flex items-center gap-2"
+      >
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        Connect Wallet
+      </GradientButton>
+    </motion.div>
   )
 }
