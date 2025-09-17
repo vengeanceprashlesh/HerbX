@@ -2,12 +2,10 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { WalletConnection } from './WalletConnection'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export function Header() {
-  const { t } = useTranslation()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
@@ -71,19 +69,19 @@ export function Header() {
                 href="/register" 
                 className="text-gray-700 hover:text-orange-600 font-medium text-lg px-3 py-2 rounded hindi-text"
               >
-                {t('nav.register')}
+Register Herbs
               </Link>
               <Link 
                 href="/track" 
                 className="text-gray-700 hover:text-orange-600 font-medium text-lg px-3 py-2 rounded hindi-text"
               >
-                {t('nav.track')}
+Track Herbs
               </Link>
               <Link 
                 href="/verify" 
                 className="text-gray-700 hover:text-orange-600 font-medium text-lg px-3 py-2 rounded hindi-text"
               >
-                {t('nav.verify')}
+Verify QR
               </Link>
               <Link 
                 href="/help" 
@@ -121,21 +119,21 @@ export function Header() {
                 className="block text-gray-700 hover:text-orange-600 font-medium text-lg py-2 hindi-text"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('nav.register')}
+Register Herbs
               </Link>
               <Link 
                 href="/track" 
                 className="block text-gray-700 hover:text-orange-600 font-medium text-lg py-2 hindi-text"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('nav.track')}
+Track Herbs
               </Link>
               <Link 
                 href="/verify" 
                 className="block text-gray-700 hover:text-orange-600 font-medium text-lg py-2 hindi-text"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('nav.verify')}
+Verify QR
               </Link>
               <Link 
                 href="/help" 

@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { QrCodeIcon, CheckCircleIcon, XCircleIcon, MapPinIcon, ClockIcon } from '@heroicons/react/24/outline'
 import { Header } from '@/components/Header'
-import { useTranslation } from 'react-i18next'
 
 interface HerbData {
   id: number
@@ -76,7 +75,6 @@ const statusColors = {
 }
 
 export default function VerifyPage() {
-  const { t } = useTranslation()
   const [herbId, setHerbId] = useState('')
   const [herbData, setHerbData] = useState<HerbData | null>(null)
   const [isVerified, setIsVerified] = useState<boolean | null>(null)
@@ -87,7 +85,7 @@ export default function VerifyPage() {
     e.preventDefault()
     
     if (!herbId.trim()) {
-      setError(t('verify.error.empty'))
+      setError('Please enter a Herb ID')
       return
     }
 
@@ -104,10 +102,10 @@ export default function VerifyPage() {
         setIsVerified(true)
       } else {
         setIsVerified(false)
-        setError(t('verify.error.notFound'))
+        setError('Herb batch not found or invalid')
       }
     } catch (err) {
-      setError(t('verify.error.failed'))
+      setError('Failed to verify herb batch')
       setIsVerified(false)
     } finally {
       setLoading(false)
@@ -138,11 +136,11 @@ export default function VerifyPage() {
           >
             <QrCodeIcon className="w-10 h-10 text-black" />
           </motion.div>
-          <h1 className="text-4xl font-bold text-white mb-4 hindi-text">
-            {t('verify.title')}
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Verify Herb Authenticity
           </h1>
-          <p className="text-lg text-gray-300 font-light max-w-2xl mx-auto hindi-text">
-            {t('verify.subtitle')}
+          <p className="text-lg text-gray-300 font-light max-w-2xl mx-auto">
+            Enter the Herb ID or scan the QR code to verify authenticity and trace the complete journey of your Ayurvedic herbs.
           </p>
         </div>
 
@@ -155,15 +153,15 @@ export default function VerifyPage() {
         >
           <form onSubmit={handleVerify} className="max-w-md mx-auto">
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-white mb-3 hindi-text">
-                {t('verify.batchId')}
+              <label className="block text-sm font-semibold text-white mb-3">
+                Herb Batch ID
               </label>
               <input
                 type="text"
                 value={herbId}
                 onChange={(e) => setHerbId(e.target.value)}
-                placeholder={t('verify.placeholder')}
-                className="w-full px-4 py-4 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all text-center text-lg font-mono text-white placeholder-white/50 hindi-text"
+                placeholder="Enter Herb ID (e.g., 1)"
+                className="w-full px-4 py-4 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all text-center text-lg font-mono text-white placeholder-white/50"
                 disabled={loading}
               />
             </div>
@@ -184,10 +182,10 @@ export default function VerifyPage() {
               {loading ? (
                 <div className="flex items-center justify-center gap-3">
                   <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
-                  {t('verify.verifying')}
+                  Verifying on Blockchain...
                 </div>
               ) : (
-                t('verify.button')
+                'Verify Herb Batch'
               )}
             </motion.button>
           </form>
@@ -205,37 +203,37 @@ export default function VerifyPage() {
                 {/* Success Header */}
                 <div className="text-center mb-8">
                   <CheckCircleIcon className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h2 className="text-2xl font-bold text-green-800 mb-2 hindi-text">{t('verify.success.title')}</h2>
-                  <p className="text-gray-600 hindi-text">{t('verify.success.subtitle')}</p>
+                  <h2 className="text-2xl font-bold text-green-800 mb-2">Herb Verified Successfully!</h2>
+                  <p className="text-gray-600">This herb batch is authentic and traceable on the blockchain.</p>
                 </div>
 
                 {/* Herb Information */}
                 <div className="grid lg:grid-cols-2 gap-8 mb-8">
                   <div className="bg-green-50 rounded-xl p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 hindi-text">{t('verify.details.herbDetails')}</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Herb Details</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="text-gray-600 hindi-text">{t('verify.details.batchId')}:</span>
+                        <span className="text-gray-600">Batch ID:</span>
                         <span className="font-mono font-semibold">#{herbData?.id}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600 hindi-text">{t('verify.details.name')}:</span>
+                        <span className="text-gray-600">Name:</span>
                         <span className="font-semibold">{herbData?.name}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600 hindi-text">{t('verify.details.scientificName')}:</span>
+                        <span className="text-gray-600">Scientific Name:</span>
                         <span className="italic">{herbData?.botanicalName}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600 hindi-text">{t('verify.details.quantity')}:</span>
+                        <span className="text-gray-600">Quantity:</span>
                         <span>{herbData?.quantity} {herbData?.unit}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600 hindi-text">{t('verify.details.farmer')}:</span>
+                        <span className="text-gray-600">Farmer:</span>
                         <span>{herbData?.farmer}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600 hindi-text">{t('verify.details.status')}:</span>
+                        <span className="text-gray-600">Status:</span>
                         <span className={`px-3 py-1 rounded-full text-sm font-medium border ${statusColors[herbData?.status || 'COLLECTED']}`}>
                           {herbData?.status}
                         </span>
@@ -244,12 +242,12 @@ export default function VerifyPage() {
                   </div>
 
                   <div className="bg-blue-50 rounded-xl p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 hindi-text">{t('verify.details.collectionInfo')}</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Collection Info</h3>
                     <div className="space-y-4">
                       <div className="flex items-start gap-3">
                         <MapPinIcon className="w-5 h-5 text-blue-600 mt-0.5" />
                         <div>
-                          <p className="font-medium text-gray-900 hindi-text">{t('verify.details.location')}</p>
+                          <p className="font-medium text-gray-900">Location</p>
                           <p className="text-gray-600 text-sm">{herbData?.location.address}</p>
                           <p className="text-gray-500 text-xs font-mono">
                             {herbData?.location.latitude}, {herbData?.location.longitude}
@@ -260,7 +258,7 @@ export default function VerifyPage() {
                       <div className="flex items-start gap-3">
                         <ClockIcon className="w-5 h-5 text-blue-600 mt-0.5" />
                         <div>
-                          <p className="font-medium text-gray-900 hindi-text">{t('verify.details.collectionDate')}</p>
+                          <p className="font-medium text-gray-900">Collection Date</p>
                           <p className="text-gray-600 text-sm">
                             {herbData && formatDate(herbData.collectionDate)}
                           </p>
@@ -272,7 +270,7 @@ export default function VerifyPage() {
                           <path fillRule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
                         </svg>
                         <div>
-                          <p className="font-medium text-gray-900 hindi-text">{t('verify.details.blockchainHash')}</p>
+                          <p className="font-medium text-gray-900">Blockchain Hash</p>
                           <p className="text-gray-600 text-xs font-mono break-all">
                             {herbData?.txHash}
                           </p>
@@ -284,7 +282,7 @@ export default function VerifyPage() {
 
                 {/* Supply Chain Timeline */}
                 <div className="bg-gray-50 rounded-xl p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-6 hindi-text">{t('verify.details.supplyChainJourney')}</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-6">Supply Chain Journey</h3>
                   <div className="space-y-4">
                     {herbData?.supplyChain.map((stage, index) => (
                       <div key={index} className="flex items-start gap-4">
@@ -299,7 +297,7 @@ export default function VerifyPage() {
                             </span>
                           </div>
                           <p className="text-gray-600 text-sm mb-1">{stage.location}</p>
-                          <p className="text-gray-500 text-sm hindi-text">{t('verify.details.handledBy')}: {stage.handler}</p>
+                          <p className="text-gray-500 text-sm">Handled by: {stage.handler}</p>
                         </div>
                       </div>
                     ))}
@@ -309,22 +307,22 @@ export default function VerifyPage() {
             ) : (
               <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 text-center">
                 <XCircleIcon className="w-16 h-16 text-red-500 mx-auto mb-4" />
-                <h2 className="text-2xl font-bold text-red-800 mb-2 hindi-text">{t('verify.failed.title')}</h2>
-                <p className="text-gray-600 mb-4 hindi-text">
-                  {t('verify.failed.subtitle')}
+                <h2 className="text-2xl font-bold text-red-800 mb-2">Verification Failed</h2>
+                <p className="text-gray-600 mb-4">
+                  The herb batch could not be verified. This could mean:
                 </p>
                 <ul className="text-left text-gray-600 space-y-2 max-w-md mx-auto">
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                    <span className="hindi-text">{t('verify.failed.reasons.invalid')}</span>
+                    Invalid or incorrect Herb ID
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                    <span className="hindi-text">{t('verify.failed.reasons.notRegistered')}</span>
+                    Herb batch not registered on blockchain
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                    <span className="hindi-text">{t('verify.failed.reasons.counterfeit')}</span>
+                    Counterfeit or fraudulent product
                   </li>
                 </ul>
               </div>
@@ -339,35 +337,35 @@ export default function VerifyPage() {
           transition={{ delay: 0.3 }}
           className="bg-gray-900 border border-gray-700 rounded-xl p-8 mt-12"
         >
-          <h2 className="text-2xl font-bold text-white mb-6 text-center hindi-text">
-            {t('verify.howItWorks.title')}
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">
+            How Verification Works
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-black font-bold">1</span>
               </div>
-              <h3 className="font-semibold text-white mb-2 hindi-text">{t('verify.howItWorks.step1.title')}</h3>
-              <p className="text-gray-300 text-sm hindi-text">
-                {t('verify.howItWorks.step1.desc')}
+              <h3 className="font-semibold text-white mb-2">Scan QR Code</h3>
+              <p className="text-gray-300 text-sm">
+                Scan the QR code on the product or enter the Herb ID manually
               </p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-black font-bold">2</span>
               </div>
-              <h3 className="font-semibold text-white mb-2 hindi-text">{t('verify.howItWorks.step2.title')}</h3>
-              <p className="text-gray-300 text-sm hindi-text">
-                {t('verify.howItWorks.step2.desc')}
+              <h3 className="font-semibold text-white mb-2">Blockchain Query</h3>
+              <p className="text-gray-300 text-sm">
+                System queries the blockchain for authentic herb data
               </p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-black font-bold">3</span>
               </div>
-              <h3 className="font-semibold text-white mb-2 hindi-text">{t('verify.howItWorks.step3.title')}</h3>
-              <p className="text-gray-300 text-sm hindi-text">
-                {t('verify.howItWorks.step3.desc')}
+              <h3 className="font-semibold text-white mb-2">View Journey</h3>
+              <p className="text-gray-300 text-sm">
+                See the complete traceability from farm to final product
               </p>
             </div>
           </div>

@@ -1,21 +1,19 @@
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
 import { cookieStorage, createStorage } from 'wagmi'
-import { mainnet, sepolia, polygonMumbai, hardhat } from 'wagmi/chains'
+import { mainnet, sepolia } from 'wagmi/chains'
 
-// Get projectId from environment variables
-export const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || 'your-project-id'
-
-if (!projectId) throw new Error('Project ID is not defined')
+// Get projectId from environment variables with fallback
+export const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'
 
 const metadata = {
-  name: 'AyurTrace',
+  name: 'HerbX',
   description: 'Blockchain-based traceability system for Ayurvedic herbs',
-  url: 'https://ayurtrace.vercel.app',
+  url: 'https://herbx-tracker.vercel.app',
   icons: ['https://avatars.githubusercontent.com/u/37784886']
 }
 
-// Create wagmiConfig
-const chains = [sepolia, polygonMumbai, hardhat, mainnet] as const
+// Simple chain configuration - only essential chains
+const chains = [sepolia, mainnet] as const
 
 export const config = defaultWagmiConfig({
   chains,
@@ -24,13 +22,5 @@ export const config = defaultWagmiConfig({
   ssr: true,
   storage: createStorage({
     storage: cookieStorage
-  }),
-  enableWalletConnect: true,
-  enableInjected: true,
-  enableEIP6963: true,
-  enableCoinbase: true,
-  // Additional wallet detection
-  walletImages: {
-    phantom: 'https://phantom.app/favicon.ico'
-  }
+  })
 })

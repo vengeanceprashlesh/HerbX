@@ -4,7 +4,6 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { Toaster } from "react-hot-toast";
 import { Footer } from "../components/Footer";
-import { I18nProvider } from "../components/I18nProvider";
 
 const inter = Inter({ 
   subsets: ["latin", "latin-ext"],
@@ -26,10 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased min-h-screen`}>
-        <I18nProvider>
-          <Providers>
-            {children}
-            <Footer />
+        <Providers>
+          {children}
+          <Footer />
           <Toaster 
             position="top-right"
             toastOptions={{
@@ -43,8 +41,7 @@ export default function RootLayout({
               },
             }}
           />
-          </Providers>
-        </I18nProvider>
+        </Providers>
       </body>
     </html>
   );

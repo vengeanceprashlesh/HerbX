@@ -1,15 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    // Disable ESLint during builds
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Skip type checking during builds
     ignoreBuildErrors: true,
   },
-  experimental: {
-    esmExternals: 'loose',
+  webpack: (config) => {
+    config.externals.push('pino-pretty', 'encoding')
+    config.resolve.fallback = {
+      fs: false,
+      net: false,
+      tls: false,
+    }
+    return config
   },
 }
 
