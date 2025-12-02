@@ -18,6 +18,7 @@ HerbX is a revolutionary blockchain-based traceability system designed specifica
 - **🎨 Accessible UI**: High contrast, accessible user interface
 - **📍 Location Tracking**: GPS coordinates for origin verification
 - **⏰ Real-time Updates**: Live status updates throughout the supply chain
+- **🌐 Multi-language Support**: English and Hindi language support with global context
 
 ## 🏗️ Architecture
 
@@ -29,9 +30,11 @@ HerbX is a revolutionary blockchain-based traceability system designed specifica
 ### Frontend
 - **Framework**: Next.js 15 with TypeScript
 - **Styling**: Tailwind CSS
-- **Wallet Integration**: Wagmi + RainbowKit
+- **Wallet Integration**: Wagmi + Web3Modal
+- **State Management**: React Context API
 - **QR Generation**: qrcode library
 - **UI Components**: Framer Motion for animations
+- **Language Support**: English and Hindi localization
 
 ## 🚀 Getting Started
 
@@ -109,7 +112,8 @@ HerbX is a revolutionary blockchain-based traceability system designed specifica
 | Backend | Hardhat | Smart contract deployment and testing |
 | Frontend | Next.js 15 | Modern React framework |
 | Styling | Tailwind CSS | Utility-first CSS framework |
-| Wallet Integration | Wagmi + RainbowKit | Ethereum wallet connection |
+| Wallet Integration | Wagmi + Web3Modal | Ethereum wallet connection |
+| State Management | React Context API | Global language & state management |
 | QR Codes | qrcode.js | QR code generation and scanning |
 | Animations | Framer Motion | Smooth UI animations |
 | Blockchain | Ethereum | Decentralized ledger |
@@ -174,7 +178,7 @@ HerbX contributes to sustainable Ayurvedic practices by:
 - [ ] AI-powered quality assessment
 - [ ] Integration with more blockchain networks
 - [ ] Advanced analytics and reporting
-- [ ] Multi-language support
+- [x] Multi-language support (English and Hindi implemented)
 - [ ] Government regulatory compliance tools
 
 ## 🤝 Contributing
