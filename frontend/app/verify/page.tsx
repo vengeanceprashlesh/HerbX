@@ -26,6 +26,10 @@ interface HerbData {
     location: string
     handler: string
   }>
+  // IPFS metadata fields
+  description?: string
+  imageUrls?: string[]
+  metadataURI?: string
 }
 
 // Mock data for demonstration
@@ -83,7 +87,7 @@ export default function VerifyPage() {
 
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!herbId.trim()) {
       setError('Please enter a Herb ID')
       return
@@ -91,11 +95,11 @@ export default function VerifyPage() {
 
     setLoading(true)
     setError('')
-    
+
     try {
       // Simulate API call to blockchain
       await new Promise(resolve => setTimeout(resolve, 300))
-      
+
       // For demo purposes, we'll show success if ID is "1"
       if (herbId === '1') {
         setHerbData(mockHerbData)
@@ -125,7 +129,7 @@ export default function VerifyPage() {
   return (
     <div className="min-h-screen bg-black">
       <Header />
-      
+
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -165,7 +169,7 @@ export default function VerifyPage() {
                 disabled={loading}
               />
             </div>
-            
+
             {error && (
               <div className="mb-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 text-sm">
                 {error}
@@ -206,6 +210,32 @@ export default function VerifyPage() {
                   <h2 className="text-2xl font-bold text-green-800 mb-2">Herb Verified Successfully!</h2>
                   <p className="text-gray-600">This herb batch is authentic and traceable on the blockchain.</p>
                 </div>
+
+                {/* IPFS Images Gallery */}
+                {herbData?.imageUrls && herbData.imageUrls.length > 0 && (
+                  <div className="bg-purple-50 rounded-xl p-6 mb-8">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Herb Images (from IPFS)</h3>
+                    <div className="grid grid-cols-3 gap-4">
+                      {herbData.imageUrls.map((url, index) => (
+                        <div key={index} className="relative aspect-square rounded-lg overflow-hidden border-2 border-gray-200">
+                          <img
+                            src={url}
+                            alt={`Herb image ${index + 1}`}
+                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Description from IPFS */}
+                {herbData?.description && (
+                  <div className="bg-yellow-50 rounded-xl p-6 mb-8">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">Additional Notes</h3>
+                    <p className="text-gray-700">{herbData.description}</p>
+                  </div>
+                )}
 
                 {/* Herb Information */}
                 <div className="grid lg:grid-cols-2 gap-8 mb-8">
@@ -254,7 +284,7 @@ export default function VerifyPage() {
                           </p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <ClockIcon className="w-5 h-5 text-blue-600 mt-0.5" />
                         <div>

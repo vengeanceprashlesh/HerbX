@@ -39,15 +39,15 @@ export function HerbRegistrationForm() {
     }
 
     setLocationLoading(true)
-    
+
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         const { latitude, longitude } = position.coords
-        
+
         try {
           // Reverse geocoding to get address (you'd implement this with a real service)
           const address = `Coordinates: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}`
-          
+
           setFormData(prev => ({
             ...prev,
             location: {
@@ -57,7 +57,7 @@ export function HerbRegistrationForm() {
               region: 'Auto-detected location'
             }
           }))
-          
+
           toast.success('Location detected successfully!')
         } catch (error) {
           toast.error('Failed to get address information')
@@ -80,7 +80,7 @@ export function HerbRegistrationForm() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    
+
     if (name.startsWith('location.')) {
       const locationField = name.split('.')[1]
       setFormData(prev => ({
@@ -115,7 +115,7 @@ export function HerbRegistrationForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!isConnected) {
       toast.error('Please connect your wallet first')
       return
@@ -128,14 +128,57 @@ export function HerbRegistrationForm() {
     }
 
     setIsLoading(true)
-    
+
     try {
-      // Here you would integrate with your smart contract
-      // For now, we'll simulate the transaction
-      await new Promise(resolve => setTimeout(resolve, 500))
-      
-      toast.success('Herb batch registered successfully!')
-      
+      // Step 1: Upload images to IPFS
+      toast.loading('Uploading images to IPFS...', { id: 'upload' })
+
+      const { uploadImagesToIPFS, uploadMetadataToIPFS } = await import('@/lib/ipfs')
+
+      let imageUrls: string[] = []
+      if (formData.images.length > 0) {
+        imageUrls = await uploadImagesToIPFS(formData.images)
+        toast.success(`${formData.images.length} image(s) uploaded to IPFS`, { id: 'upload' })
+      } else {
+        toast.dismiss('upload')
+      }
+
+      // Step 2: Create and upload metadata to IPFS
+      toast.loading('Creating metadata...', { id: 'metadata' })
+
+      const metadata = {
+        name: formData.name,
+        botanicalName: formData.botanicalName,
+        quantity: formData.quantity,
+        unit: formData.unit,
+        location: formData.location,
+        description: formData.description,
+        imageUrls,
+        uploadedAt: Date.now(),
+        farmerAddress: '' // Will be set by wagmi
+      }
+
+      const metadataHash = await uploadMetadataToIPFS(metadata)
+      toast.success('Metadata uploaded to IPFS', { id: 'metadata' })
+
+      // Step 3: Register on blockchain (simulated for now - need wallet integration)
+      toast.loading('Registering on blockchain...', { id: 'blockchain' })
+
+      // TODO: Integrate with wagmi to call smart contract
+      // const { registerHerbOnBlockchain } = await import('@/lib/contracts')
+      // const result = await registerHerbOnBlockchain(signer, contractAddress, ...)
+
+      // For now, simulate success
+      await new Promise(resolve => setTimeout(resolve, 1500))
+
+      toast.success(`Herb registered! IPFS Hash: ${metadataHash.slice(0, 10)}...`, { id: 'blockchain' })
+
+      console.log('Registration complete:', {
+        metadataHash,
+        imageUrls,
+        metadata
+      })
+
       // Reset form
       setFormData({
         name: '',
@@ -151,10 +194,10 @@ export function HerbRegistrationForm() {
         description: '',
         images: []
       })
-      
+
     } catch (error) {
       console.error('Registration error:', error)
-      toast.error('Failed to register herb batch')
+      toast.error(error instanceof Error ? error.message : 'Failed to register herb batch')
     } finally {
       setIsLoading(false)
     }
@@ -258,7 +301,7 @@ export function HerbRegistrationForm() {
             {locationLoading ? 'Detecting...' : 'Detect Location'}
           </button>
         </div>
-        
+
         {formData.location.latitude && (
           <div className="bg-gray-700 border border-gray-600 rounded-lg p-4 space-y-3">
             <div className="flex items-center gap-2">
@@ -311,7 +354,7 @@ export function HerbRegistrationForm() {
             <CameraIcon className="w-10 h-10 text-gray-300 mb-2" />
             <span className="text-sm text-white font-medium">Click to upload images</span>
           </label>
-          
+
           {formData.images.length > 0 && (
             <div className="mt-4 grid grid-cols-3 gap-2">
               {formData.images.map((image, index) => (
